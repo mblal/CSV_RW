@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/custom/css/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/custom/css/jquery-ui.theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/custom/css/jquery-ui.structure.min.css') }}">
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/custom/js/jquery-1.12.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/custom/js/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/custom/js/import.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block body %}
+    <button id="btn-import" value="Importer">Importer</button>
+
+    <!-- Dialog area -->
+    <div id="import-dialog-confirm" title="Importer le fichier CSV" style="display: none">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+                <form id="form-import" action="{{ path('import-handler-path') }}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="imported-file">
+            <input type="submit" value="Submit">
+            <input type="text" name="txt-for-test" value="">
+                </form>
+        </p>
+    </div>
+    <!-- end -->
+{% endblock %}
