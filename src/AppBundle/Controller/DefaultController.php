@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends Controller
 {
+    const TARGET_MODEL = '\AppBundle\Entity\Employee';
 
     /**
      * @Route("/csv/import")
@@ -30,18 +31,10 @@ class DefaultController extends Controller
         $reader = new Csv();
         $file = $reader->fromFile($file);
         $csvEmploye = new Employee();
-        $content = $csvEmploye->plan1($file,'\AppBundle\Entity\Employee');
-        //$content = $csvEmploye->formatBatch($file);
+        $content = $csvEmploye->getObjectModel($file,self::TARGET_MODEL);
+
         echo '<pre>';
         print_r($content);
-        exit();
-        //$content = $csvReader->formatBatch($file);
-        $targetModel = '\MT\Bundle\CommonBundle\Entity\UniversalDirectory';
-        //$file  = $csvReader->formatObjectModel($content, $targetModel);
-        //$formatter = new
-        echo '<pre>';
-        print_r($file);
-        exit();
         exit();
     }
 }
