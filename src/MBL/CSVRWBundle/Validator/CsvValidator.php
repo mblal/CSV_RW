@@ -37,8 +37,8 @@ class CsvValidator extends AbstractValidator {
 	 * @var bool
 	 */
 	protected $breakIfError = false;
-	const ERR_MSG_HEADER = 'Le format de l\'entête est incorrect';
-	const ERR_MSG_LINE = 'Le format de la ligne %d est incorrect';
+	const ERR_MSG_HEADER = 'Bad header format';
+	const ERR_MSG_LINE = 'Line format %d is wrong';
 	
 	/**
 	 *

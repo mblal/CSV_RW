@@ -13,11 +13,9 @@ use MBL\CSVRWBundle\Exception\RuntimeException;
 abstract class AbstractCsvReader implements FormatterInterface
 {
 
-    protected static $mainInstances, $instances = array();
+    protected static $mainInstances = array();
 
     protected $annotationDefinition = 'MBL\CSVRWBundle\Annotation\\Depndency';
-
-    protected $main = true;
 
     protected $delimiter = '.';
 
@@ -86,13 +84,14 @@ abstract class AbstractCsvReader implements FormatterInterface
         }
 
         $content = $this->formatBatch($content);
+
         foreach ($content as $key => $record) {
 
             static::$mainInstances[$key] = new $targetModel();
 
             foreach ($record as $attribute => $value) {
 
-                $wEntity = new $targetModel;
+                $entityOfWork = new $targetModel;
 
                 $attributes = explode($this->delimiter, $attribute);
 
@@ -100,17 +99,19 @@ abstract class AbstractCsvReader implements FormatterInterface
 
                     for ($i = 0; $i < count($attributes) - 1; $i++) {
 
-                        $reflectionProp = new \ReflectionProperty($wEntity, $attributes[$i]);
+                        $reflectionProp = new \ReflectionProperty($entityOfWork, $attributes[$i]);
                         $relation = $annotationReader->getPropertyAnnotation($reflectionProp, $this->annotationDefinition);
                         $object = new $relation->class;
                         $lst[$key][$attributes[$i]] = $object;
-                        $wEntity = $object;
+                        $entityOfWork = $object;
                     }
+
                     $lst[$key][$attributes[$i]] = $value;
+
                     continue;
                 }
-                static::$mainInstances[$key]->{$attribute} = $value;
 
+                static::$mainInstances[$key]->{$attribute} = $value;
             }
         }
         $lst = $this->rawHydrator($lst);
