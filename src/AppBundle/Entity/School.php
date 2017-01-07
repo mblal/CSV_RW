@@ -27,6 +27,7 @@ class School
      * @Depndency(class="AppBundle\Entity\Address")
      */
     public $address;
+
     /**
      * @return string
      */

@@ -20,14 +20,14 @@ class Employee extends AbstractCsvReader
     public function getHeader()
     {
         return array(
-            'firstname' => 'firstname',
             'lastname' => 'lastname',
             'age' => 'age',
             'degree'=> 'degree',
             'job'=> 'job',
             'school_name'=> 'school.name',
             'school_category'=> 'school.category',
-            'scholl_address' => 'school.address.zipCode'
+            'school_address' => 'school.address.zipCode',
+            'firstname' => 'firstname'
         );
     }
 }
