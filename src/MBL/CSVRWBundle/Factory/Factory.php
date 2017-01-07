@@ -4,10 +4,11 @@ namespace MBL\CSVRWBundle\Factory;
 
 use MBL\CSVRWBundle\Formatter\FormatterInterface;
 use MBL\CSVRWBundle\Exception\RuntimeException;
+use MBL\CSVRWBundle\Writer\WriterInterface;
 
 /**
  * Class Factory
- * @package Common\ToolsBundle\Service\Parser
+ * @package MBL\CSVRWBundle\Factory
  */
 class Factory
 {
@@ -53,7 +54,7 @@ class Factory
         }
 
         $extension = strtolower($pathinfo['extension']);
-        // temporary statement
+        // temporary statement | TODO FIX IT
         if ($extension === 'tmp'){
             $extension = 'csv';
         }
@@ -115,7 +116,7 @@ class Factory
         $writer = static::$writers[$extension];
         $writerHandler = static::$handlers[$extension];
 
-        if (!$writer instanceof Writer\WriterInterface) {
+        if (!$writer instanceof WriterInterface) {
             $writer = new static::$writers[$extension];
             static::$readers[$extension] = $writer;
         }
