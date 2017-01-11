@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\CSVStructure\Employee;
+use AppBundle\ServiceAvailability\AbstractService;
+use AppBundle\ServiceAvailability\ServiceDirectory;
 use MBL\CSVRWBundle\Reader\Csv;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,6 +15,23 @@ class DefaultController extends Controller
 {
     const TARGET_MODEL = '\AppBundle\Entity\Employee';
 
+    /**
+     * @Route("/dispo/test")
+     * @Template()
+     */
+    public function testAction(){
+
+       $services = new ServiceDirectory();
+       $s = $services->getServices();
+       foreach ($s as $service){
+           $srv = $this->get($service);
+           $z =$srv->ping();
+       }
+       echo '<pre>';
+        print_r(AbstractService::getState());
+        exit();
+        return array();
+    }
     /**
      * @Route("/csv/import")
      * @Template()
